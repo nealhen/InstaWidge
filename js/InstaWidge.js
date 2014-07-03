@@ -1,3 +1,4 @@
-$( document ).ready(function() {
-  console.log('HELLO WORLD!'):
+jQuery( document ).ready(function() {
+  //console.log('HELLO WORLD!');
+  jQuery('.jcarousel').jcarousel();
 });

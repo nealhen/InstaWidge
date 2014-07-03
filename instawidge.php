@@ -208,15 +208,20 @@ function widget($args, $instance) {
 
     $inst_stream = callInstagram($url);
     $results = json_decode($inst_stream, true);
-    wp_enqueue_script( 'jCarousel', get_template_directory_uri().'/js/jquery.jcarousel-core.min.js', '', '1.0', false); 
-    wp_enqueue_script( 'InstaWidgeJS', get_template_directory_uri().'/js/InstaWidge.js', 'jCarousel', '1.0', false); 
+    wp_enqueue_style( 'iwStyle', plugins_url().'/InstaWidge/css/iwStyle.css', '', '1.0', 'css' );
+    wp_enqueue_script( 'jCarousel', plugins_url().'/InstaWidge/js/jquery.jcarousel-core.min.js', '', '1.0'); 
+    wp_enqueue_script( 'InstaWidgeJS', plugins_url().'/InstaWidge/js/InstaWidge.js', 'jCarousel', '1.0'); 
     //Now parse through the $results array to display your results...
-    echo '<ul id="InstaWidgeSlider">'; 
-    foreach($results['data'] as $item){
-        $image_link = $item['images']['low_resolution']['url'];
-        echo '<li><a href="'.$image_link.'"><img src="'.$image_link.'" /></a></li>';
-    }
-    echo '</ul>';
+    echo '<div class="jcarousel-wrapper">';
+      echo '<div class="jcarousel">';
+        echo '<ul id="InstaWidgeSlider">'; 
+        foreach($results['data'] as $item){
+            $image_link = $item['images']['low_resolution']['url'];
+            echo '<li><img src="'.$image_link.'" /></li>';
+        }
+        echo '</ul>';
+      echo'</div>';
+    echo "</div>";
   }
 
    echo '</div>';
