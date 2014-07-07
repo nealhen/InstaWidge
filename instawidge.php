@@ -70,10 +70,10 @@ if( $instance) {
 </script>
 
 <p>
-  <label for="<?php echo $this->get_field_id('select'); ?>"><?php _e('Select', 'wp_widget_plugin'); ?></label>
-  <select name='<?php echo $this->get_field_name("select"); ?>' id="SelType <?php// echo $this->get_field_id('select'); ?>" class="widefat selMode" onchange="getval(this);">
+  
+  <select name='<?php echo $this->get_field_name("select"); ?>' id="SelType <?php// echo $this->get_field_id('select'); ?>" class="widefat selMode" onchange="getval(this);" style='display:none;'>
   <?php 
-    $options = array('Single Image', 'Users Images', 'Hash Tag');
+    $options = array('Hash Tag');
     foreach ($options as $option) {
       echo '<option value="' . $option . '" id="' . $option . '"', $select == $option ? ' selected="selected"' : '', '>', $option, '</option>';
     }?>
@@ -208,8 +208,10 @@ function widget($args, $instance) {
 
     $inst_stream = callInstagram($url);
     $results = json_decode($inst_stream, true);
-    wp_enqueue_style( 'iwStyle', plugins_url().'/InstaWidge/css/iwStyle.css', '', '1.0', 'css' );
-    wp_enqueue_script( 'jCarousel', plugins_url().'/InstaWidge/js/jquery.jcarousel-core.min.js', '', '1.0'); 
+    wp_register_style( 'iwStyle', plugins_url('/css/iwStyle.css', __FILE__) );
+    wp_enqueue_style('iwStyle');
+    //wp_enqueue_style( 'iwStyle', plugins_url().'/InstaWidge/css/iwStyle.css', '', '1.0', 'css' );
+    wp_enqueue_script( 'jCarousel', plugins_url().'/InstaWidge/js/jquery.jcarousel.min.js', '', '1.0'); 
     wp_enqueue_script( 'InstaWidgeJS', plugins_url().'/InstaWidge/js/InstaWidge.js', 'jCarousel', '1.0'); 
     //Now parse through the $results array to display your results...
     echo '<div class="jcarousel-wrapper">';
