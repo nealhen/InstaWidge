@@ -47,7 +47,9 @@ if( $instance) {
 <p>
 <label for="<?php echo $this->get_field_id('clientID'); ?>"><?php _e('Client ID', 'wp_widget_plugin'); ?></label>
 <input class="widefat" id="<?php echo $this->get_field_id('clientID'); ?>" name="<?php echo $this->get_field_name('clientID'); ?>" type="text" value="<?php echo $clientID; ?>" />
-
+<p>A client ID is required to validate your widget with Instagram. To get your client ID go to 
+   <a href='http://instagram.com/developer' target='_blank'>instagram.com/developer</a> and click on the blue "Register Your Application" button. 
+   Click the green "Register a New Client" button. Complete the form and then click submit. Your client ID will then be displayed</p>
 </p>
 <script>
   function getval(sel) {
@@ -124,6 +126,7 @@ if( $instance) {
 	// widget update
 	// update widget
 function update($new_instance, $old_instance) {
+      
       $instance = $old_instance;
       // Fields
       $instance['title'] = strip_tags($new_instance['title']);
@@ -137,6 +140,7 @@ function update($new_instance, $old_instance) {
       //$instance['text'] = strip_tags($new_instance['text']);
       //$instance['textarea'] = strip_tags($new_instance['textarea']);
      return $instance;
+   
 }
 
 	// widget display
@@ -211,8 +215,8 @@ function widget($args, $instance) {
     wp_register_style( 'iwStyle', plugins_url('/css/iwStyle.css', __FILE__) );
     wp_enqueue_style('iwStyle');
     //wp_enqueue_style( 'iwStyle', plugins_url().'/InstaWidge/css/iwStyle.css', '', '1.0', 'css' );
-    wp_enqueue_script( 'jCarousel', plugins_url().'/InstaWidge/js/jquery.jcarousel.min.js', '', '1.0'); 
-    wp_enqueue_script( 'InstaWidgeJS', plugins_url().'/InstaWidge/js/InstaWidge.js', 'jCarousel', '1.0'); 
+    //wp_enqueue_script( 'jCarousel', plugins_url().'/InstaWidge/js/jquery.jcarousel.min.js', '', '1.0'); 
+    wp_enqueue_script( 'InstaWidgeJS', plugins_url().'/InstaWidge/js/InstaWidge.min.js', '', '1.0'); 
     //Now parse through the $results array to display your results...
     echo '<div class="jcarousel-wrapper">';
       echo '<div class="jcarousel">';
